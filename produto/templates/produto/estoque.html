@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Estoque Noder</h1>
+
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        thead {
+            background-color: black;
+            color: white;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+    </style>
+
+    <table>
+        <thead>
+            <th>Código</th>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>Fabricante</th>
+            <th>Categoria</th>
+            <th>Estoque Mínimo</th>
+            <th>Altura</th>
+            <th>Comprimento</th>
+            <th>Largura</th>
+            <th>Peso(g)</th>
+
+        </thead>
+        <tbody>
+            {% for produto in produtos %}
+            <tr>
+                <td>{{ produto.codigo }}</td>
+                <td>{{ produto.nome }}</td>
+                <td>{{ produto.preco }}</td>
+                <td>{{ produto.fabricante }}</td>
+                <td>{{ produto.categoria }}</td>
+                <td>{{ produto.estoque_limite }}</td>
+                <td>{{ produto.altura }}</td>
+                <td>{{ produto.comprimento }}</td>
+                <td>{{ produto.largura }}</td>
+                <td>{{ produto.peso }}</td>
+                <td>
+                    <a href="{% url 'edit_produto' produto.pk %}">
+                        <button type="submit">Editar</button>
+                    </a>
+                </td>
+                <td>
+                    <form method="POST" action="{% url 'delete_produto' produto.pk %}">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                    <button type="submit">Deletar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+
+</html>
