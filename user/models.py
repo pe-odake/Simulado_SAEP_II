@@ -1,11 +1,9 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser,    UserManager
+from django.contrib.auth.models import AbstractUser, UserManager
 
 class User(AbstractUser):
-    cpf = models.FloatField(primary_key=True, unique=True, max_length=14)
+    cpf = models.CharField(unique=True, max_length=14)
     cargo = models.CharField(max_length=40)
-    email = models.CharField(max_length=100)
+    email = models.EmailField(max_length=100, unique=True)
 
-    objects = UserManager() 
-
-    REQUIRED_FIELDS = ['cpf', 'username', 'email', 'password', 'cargo']
+    REQUIRED_FIELDS = ['cpf', 'email', 'cargo']
