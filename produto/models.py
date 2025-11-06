@@ -19,6 +19,7 @@ class Produto(models.Model):
     
 class Entrada(models.Model):
     codigo = models.ForeignKey(Produto, on_delete=models.CASCADE, related_name="produto_entrando")
+    realizado_por = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_entrada")
     data = models.DateField()
     quantidade = models.IntegerField()
     fornecedor = models.CharField(max_length=80)
@@ -29,6 +30,7 @@ class Entrada(models.Model):
     
 class Saida(models.Model):
     codigo = models.ForeignKey(Produto, on_delete=models.CASCADE, related_name="produto_saindo")
+    realizado_por = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_saida")
     data = models.DateField()
     quantidade = models.IntegerField()
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="usuario")
