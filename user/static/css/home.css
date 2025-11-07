@@ -1,0 +1,280 @@
+/* home.css - Versão Aprimorada: Minimalista, Impactante e Responsiva */
+
+/* Variáveis de Cores (Consistente com login.css) */
+:root {
+    --primary-color: #4CAF50; /* Verde principal */
+    --primary-dark: #2E7D32;
+    --secondary-color: #2196F3; /* Azul para Movimentações */
+    --warning-color: #FF9800; /* Laranja para Estoque Baixo */
+    --danger-color: #d32f2f; /* Vermelho para Sair */
+    --background-color: #f0f2f5; /* Fundo suave */
+    --card-background: #ffffff;
+    --text-color: #333333;
+    --text-light: #666666;
+    --border-color: #e0e0e0;
+    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.12);
+    --border-radius: 8px;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    padding-top: 70px; /* Espaço para a navbar fixa */
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--card-background);
+    color: var(--text-color);
+    padding: 10px 30px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Sombra mais sutil */
+    z-index: 100;
+    box-sizing: border-box;
+}
+
+.navbar h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--primary-dark);
+    display: flex;
+    align-items: center;
+}
+
+.navbar h2 .fas {
+    margin-right: 8px;
+    color: var(--primary-color);
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.nav-right span {
+    font-weight: 500;
+    color: var(--text-light);
+}
+
+.btn-logout {
+    background: none;
+    color: var(--danger-color);
+    border: 1px solid var(--danger-color);
+    padding: 6px 12px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 13px;
+    transition: all 0.3s ease;
+    margin-left: 15px;
+}
+
+.btn-logout:hover {
+    background-color: var(--danger-color);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(211, 47, 47, 0.3);
+}
+
+/* Dashboard */
+.dashboard {
+    padding: 30px;
+    display: grid;
+    gap: 30px;
+    grid-template-columns: 1fr;
+    max-width: 1400px; /* Aumentando a largura máxima para dashboards */
+    margin: 30px auto;
+}
+
+/* Indicadores de KPI */
+.kpi-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Layout responsivo de grid */
+    gap: 20px;
+}
+
+.kpi-card {
+    background-color: var(--card-background);
+    border-radius: var(--border-radius);
+    padding: 25px;
+    box-shadow: var(--shadow-light);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-left: 5px solid var(--primary-color); /* Padrão */
+}
+
+.kpi-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+}
+
+.kpi-card p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.kpi-card .kpi-value {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.kpi-card .kpi-value .fas {
+    margin-right: 10px;
+    font-size: 24px;
+}
+
+/* Cores específicas para KPIs */
+.kpi-card.warning {
+    border-left-color: var(--warning-color);
+}
+.kpi-card.warning .kpi-value {
+    color: var(--warning-color);
+}
+
+.kpi-card.secondary {
+    border-left-color: var(--secondary-color);
+}
+.kpi-card.secondary .kpi-value {
+    color: var(--secondary-color);
+}
+
+/* Card Principal */
+.card {
+    background-color: var(--card-background);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-light);
+    padding: 30px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+}
+
+.card h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--primary-dark);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 15px;
+}
+
+/* Estilo do Gráfico */
+#movimentacaoChart {
+    max-height: 450px; /* Altura máxima para melhor visualização */
+    width: 100%;
+}
+
+.buttons {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap; /* Permite quebra de linha em telas menores */
+    gap: 15px;
+    justify-content: flex-start;
+}
+
+/* Botões de Ação */
+.btn-action {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: var(--border-radius);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+}
+
+.btn-action .fas {
+    margin-right: 8px;
+}
+
+.btn-action:hover {
+    background: linear-gradient(135deg, #43A047, #1B5E20);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 15px rgba(76, 175, 80, 0.4);
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+    .dashboard {
+        padding: 20px;
+        gap: 20px;
+    }
+    .kpi-container {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    .kpi-card .kpi-value {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 10px 15px;
+    }
+    .navbar h2 {
+        font-size: 16px;
+    }
+    .nav-right span {
+        display: none; /* Oculta o nome do usuário para economizar espaço */
+    }
+    .dashboard {
+        padding: 15px;
+    }
+    .kpi-container {
+        grid-template-columns: 1fr; /* Empilha em telas menores */
+    }
+    .buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .btn-action {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar h2 {
+        font-size: 14px;
+    }
+    .btn-logout {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+    .card {
+        padding: 20px;
+    }
+    .card h3 {
+        font-size: 18px;
+    }
+    .kpi-card .kpi-value {
+        font-size: 24px;
+    }
+}

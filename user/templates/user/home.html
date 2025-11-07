@@ -1,0 +1,136 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Sistema de Estoque</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-left">
+            <h2><i class="fas fa-warehouse"></i> Sistema de Estoque</h2>
+        </div>
+        <div class="nav-right">
+            <span>Bem-vindo, **{{ request.user.email }}**</span>
+            <form action="{% url 'logout' %}" method="post" style="display: inline; margin-left: 15px;">
+                {% csrf_token %}
+                <button type="submit" class="btn-logout"><i class="fas fa-sign-out-alt"></i> Sair</button>
+            </form>
+        </div>
+    </nav>
+
+    <main class="dashboard">
+        <div class="kpi-container">
+            <div class="kpi-card">
+                <p>Total de Produtos</p>
+                <div class="kpi-value"><i class="fas fa-box-open"></i> {{ total_produtos|default:"-" }}</div>
+            </div>
+            <div class="kpi-card warning">
+                <p>Estoque Baixo</p>
+                <div class="kpi-value"><i class="fas fa-exclamation-triangle"></i> {{ produtos_criticos|default:"0" }}</div>
+            </div>
+            <div class="kpi-card secondary">
+                <p>Movimentações Mês</p>
+                <div class="kpi-value"><i class="fas fa-exchange-alt"></i> {{ movimentos_mes|default:"-" }}</div>
+            </div>
+        </div>
+
+        <section class="card">
+            <h3><i class="fas fa-chart-bar"></i> Visão Geral de Movimentação (Últimos 12 Meses)</h3>
+            <canvas id="movimentacaoChart"></canvas>
+
+            <div class="buttons">
+                <a href="{% url 'list_produtos' %}" class="btn-action"><i class="fas fa-tags"></i> Catálogo de Produtos</a>
+                <a href="{% url 'list_entradas' %}" class="btn-action"><i class="fas fa-truck-loading"></i> Entradas no Estoque</a>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // --- SIMULAÇÃO DE DADOS REAIS DO BACKEND (DJango Context) ---
+        // Você deve passar estas variáveis do seu `views.py` para o template.
+        // Exemplo: context = {'entradas_data': [12, 19, ...], 'saidas_data': [8, 11, ...]}
+        const entradasData = JSON.parse("{{ entradas_data|default:'[12, 19, 3, 5, 2, 3, 12, 8, 10, 14, 9, 6]'|safe }}");
+        const saidasData = JSON.parse("{{ saidas_data|default:'[8, 11, 5, 2, 7, 4, 9, 6, 12, 10, 5, 4]'|safe }}");
+        
+        // Nomes dos meses para o eixo X
+        const labels = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+        // --- FIM DA SIMULAÇÃO ---
+
+        const ctx = document.getElementById('movimentacaoChart');
+
+        const movimentacaoChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Entradas (Unidades)',
+                        data: entradasData,
+                        borderWidth: 1,
+                        backgroundColor: 'rgba(76, 175, 80, 0.8)', // Cor verde (#4CAF50)
+                        borderColor: 'rgba(46, 125, 50, 1)',
+                        borderRadius: 4 // Borda arredondada
+                    },
+                    {
+                        label: 'Saídas (Unidades)',
+                        data: saidasData,
+                        borderWidth: 1,
+                        backgroundColor: 'rgba(211, 47, 47, 0.8)', // Cor vermelha (d32f2f)
+                        borderColor: 'rgba(183, 28, 28, 1)',
+                        borderRadius: 4 // Borda arredondada
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false, // Permite maior controle sobre a altura
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            font: {
+                                family: '"Segoe UI", Arial, sans-serif'
+                            }
+                        }
+                    },
+                    tooltip: {
+                         mode: 'index',
+                         intersect: false,
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            display: false // Remove linhas de grade no eixo X
+                        },
+                        ticks: {
+                            font: {
+                                family: '"Segoe UI", Arial, sans-serif'
+                            }
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.05)' // Linhas de grade mais suaves
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                return value; // Para garantir que números inteiros sejam exibidos
+                            },
+                            font: {
+                                family: '"Segoe UI", Arial, sans-serif'
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -6,7 +6,8 @@ class User(AbstractUser):
     cargo = models.CharField(max_length=40)
     email = models.EmailField(max_length=100, unique=True)
 
-    REQUIRED_FIELDS = ['cpf', 'email', 'cargo']
-    
+    USERNAME_FIELD = 'cpf'
+    REQUIRED_FIELDS = ['email', 'cargo']
+
     def __str__(self):
-        return f'{self.pk} - {self.cpf}\n{self.username}, {self.cargo}'
+        return f'{self.username} - {self.cpf}'
