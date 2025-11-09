@@ -1,5 +1,5 @@
 from django import forms
-from .models import Produto, Entrada
+from .models import Produto, Entrada, Saida
 
 class ProdutoForm(forms.ModelForm):
     class Meta:
@@ -10,3 +10,8 @@ class EntradaForm(forms.ModelForm):
     class Meta:
         model = Entrada
         fields = ['codigo', 'realizado_por', 'data', 'quantidade', 'fornecedor', 'lote']
+
+class SaidaForm(forms.ModelForm):
+    class Meta:
+        model = Saida
+        fields = ['codigo', 'realizado_por', 'data', 'quantidade', 'user', 'lote']

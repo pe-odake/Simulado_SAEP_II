@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produtos</title>
+    <title>Saidas</title>
 </head>
 
 <body>
-    <h1>Estoque Noder</h1>
+    <h1>Saida Noder</h1>
 
     <style>
         table {
@@ -29,32 +29,25 @@
 
     <table>
         <thead>
-            <th>Código</th>
-            <th>Nome</th>
-            <th>Preço</th>
-            <th>Fabricante</th>
-            <th>Categoria</th>
-            <th>Estoque Mínimo</th>
-            <th>Altura</th>
-            <th>Comprimento</th>
-            <th>Largura</th>
-            <th>Peso(g)</th>
-
+            <th>ID_Saida</th>
+            <th>Codigo do Produto</th>
+            <th>Realizada por</th>
+            <th>Data</th>
+            <th>Quantidade</th>
+            <th>Fornecedor</th>
+            <th>Lote</th>
         </thead>
         <tbody>
-            {% for produto in produtos %}
+            {% for saida in saidas %}
             <tr>
-                <td>{{ produto.codigo }}</td>
-                <td>{{ produto.nome }}</td>
-                <td>{{ produto.preco }}</td>
-                <td>{{ produto.fabricante }}</td>
-                <td>{{ produto.categoria }}</td>
-                <td>{{ produto.estoque_limite }}</td>
-                <td>{{ produto.altura }}</td>
-                <td>{{ produto.comprimento }}</td>
-                <td>{{ produto.largura }}</td>
-                <td>{{ produto.peso }}</td>
-                <td>
+                <td>{{ saida.pk }}</td>
+                <td>{{ saida.codigo }}</td>
+                <td>{{ saida.user }}</td>
+                <td>{{ saida.data }}</td>
+                <td>{{ saida.quantidade }}</td>
+                <td>{{ saida.fornecedor }}</td>
+                <td>{{ saida.lote }}</td>
+                <!-- <td>
                     <a href="{% url 'edit_produto' produto.pk %}">
                         <button type="submit">Editar</button>
                     </a>
@@ -65,7 +58,7 @@
                         {{ form.as_p }}
                     <button type="submit">Deletar</button>
                     </form>
-                </td>
+                </td> -->
             </tr>
             {% endfor %}
         </tbody>
