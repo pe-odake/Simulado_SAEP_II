@@ -1,13 +1,18 @@
-# forms.py (crie este arquivo se não existir)
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm
 from .models import User
+from django.contrib.auth.forms import AuthenticationForm
+from django.core.exceptions import ValidationError
+from django.contrib.auth.password_validation import validate_password
 
-class CPFAuthenticationForm(AuthenticationForm):
-    username = forms.CharField(label='CPF', max_length=14)
-    
-    def clean_username(self):
-        cpf = self.cleaned_data['username']
-        # Remove caracteres não numéricos do CPF
-        cpf = ''.join(filter(str.isdigit, cpf))
-        return cpf
+class LoginForm(AuthenticationForm):
+    username = forms.EmailField(
+        label="Email",
+        widget=forms.EmailInput(attrs={"autofocus": True})
+    )
+
+    error_messages = {
+        'invalid_login': (
+            "E-mail ou senha incorretos. Verifique suas credenciais e tente novamente."
+        ),
+        'inactive': ("Esta conta está inativa."),
+    }

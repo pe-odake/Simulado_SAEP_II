@@ -2,12 +2,11 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
-    cpf = models.CharField(unique=True, max_length=14)
+    email = models.EmailField(unique=True)
     cargo = models.CharField(max_length=40)
-    email = models.EmailField(max_length=100, unique=True)
+    cpf = models.CharField(max_length=11, unique=True)
 
-    USERNAME_FIELD = 'cpf'
-    REQUIRED_FIELDS = ['email', 'cargo']
+    REQUIRED_FIELDS = ["email", "cpf"]
 
     def __str__(self):
-        return f'{self.username} - {self.cpf}'
+        return self.email
