@@ -4,14 +4,14 @@ from .models import Produto, Entrada, Saida
 class ProdutoForm(forms.ModelForm):
     class Meta:
         model = Produto
-        fields = ['codigo', 'nome', 'preco', 'fabricante', 'categoria', 'estoque_limite', 'altura', 'comprimento', 'largura', 'peso', 'imagem']
+        fields = ['nome', 'preco', 'fabricante', 'categoria', 'estoque_limite', 'altura', 'comprimento', 'largura', 'peso', 'imagem']
         
 class EntradaForm(forms.ModelForm):
     class Meta:
         model = Entrada
-        fields = ['codigo', 'realizado_por', 'data', 'quantidade', 'fornecedor', 'lote']
+        fields = ['realizado_por', 'data', 'quantidade', 'fornecedor', 'lote']
 
 class SaidaForm(forms.ModelForm):
     class Meta:
         model = Saida
-        fields = ['codigo', 'realizado_por', 'data', 'quantidade', 'user', 'lote']
+        fields = ['realizado_por', 'data', 'quantidade', 'user', 'lote']

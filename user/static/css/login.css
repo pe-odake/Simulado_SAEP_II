@@ -1,135 +1,77 @@
-/* login.css - Versão Aprimorada: Minimalista, Impactante e Responsiva */
-
-/* Variáveis de Cores */
-:root {
-    --primary-color: #4CAF50; /* Verde principal */
-    --primary-dark: #2E7D32;
-    --background-color: #f0f2f5; /* Fundo suave */
-    --card-background: #ffffff;
-    --text-color: #333333;
-    --border-color: #e0e0e0;
-    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
-    --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.12);
-}
-
+/* Fundo geral */
 body {
+    font-family: Arial, sans-serif;
+    background: #f0f3f2;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    font-family: 'Inter', 'Segoe UI', Arial, sans-serif; /* Fonte moderna */
+    height: 100vh;
     margin: 0;
-    background-color: var(--background-color);
-    color: var(--text-color);
-    padding: 20px; /* Padding para responsividade em telas muito pequenas */
 }
 
 /* Card do formulário */
-.login-container {
-    /* Centraliza o formulário no container */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
-
-.form-login {
-    width: 100%;
-    max-width: 380px; /* Aumentado para um visual mais robusto */
-    padding: 40px;
-    background-color: var(--card-background);
-    border-radius: 12px; /* Arredondamento suave */
-    box-shadow: var(--shadow-light);
-    transition: all 0.3s ease;
-}
-
-.form-login:hover {
-    box-shadow: var(--shadow-hover);
+form {
+    background: #fff;
+    padding: 35px 40px;
+    border-radius: 10px;
+    width: 380px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    text-align: center;
 }
 
 /* Título */
-.form-login h2 {
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 28px;
-    font-weight: 600;
-    color: var(--primary-dark);
-    border-bottom: 2px solid var(--border-color);
-    padding-bottom: 10px;
-}
-
-/* Grupos de Formulário */
-.form-group {
+form h2 {
     margin-bottom: 20px;
-}
-
-/* Labels */
-.form-login label {
-    display: block;
-    font-weight: 500;
-    margin-bottom: 8px;
-    color: var(--text-color);
-    font-size: 14px;
-}
-
-/* Inputs */
-.form-login input[type="text"],
-.form-login input[type="password"] {
-    width: 100%;
-    padding: 12px 15px;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    font-size: 16px;
-    transition: border-color 0.3s, box-shadow 0.3s;
-    box-sizing: border-box; /* Garante que padding não aumente a largura */
-}
-
-.form-login input[type="text"]:focus,
-.form-login input[type="password"]:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2); /* Foco sutil */
-    outline: none;
-}
-
-/* Botão de Login */
-.btn-login {
-    display: block;
-    width: 100%;
-    padding: 14px;
-    margin-top: 30px;
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-    border: none;
-    border-radius: 8px;
-    color: white;
+    font-size: 26px;
     font-weight: bold;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3); /* Sombra para impacto */
+    color: #2e7d32;
 }
 
-.btn-login:hover {
-    background: linear-gradient(135deg, #43A047, #1B5E20);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(76, 175, 80, 0.4);
+/* Labels e inputs */
+form p {
+    text-align: left;
+    margin: 12px 0;
 }
 
-/* Mensagem de erro (se houver) */
-.error-message {
-    text-align: center;
-    color: #d32f2f;
+form label {
+    font-weight: 600;
+    margin-bottom: 6px;
+    display: block;
+    color: #333;
     font-size: 14px;
-    margin-top: -10px;
-    margin-bottom: 15px;
 }
 
-/* Responsividade */
-@media (max-width: 480px) {
-    .form-login {
-        padding: 30px 20px;
-        margin: 0 10px;
-    }
-    .form-login h2 {
-        font-size: 24px;
-    }
+form input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+form input:focus {
+    border-color: #2e7d32;
+    box-shadow: 0 0 4px rgba(46, 125, 50, 0.4);
+}
+
+/* Botão */
+button {
+    width: 100%;
+    padding: 12px;
+    background: #2e7d32;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 12px;
+    transition: background 0.2s, transform 0.2s;
+}
+
+button:hover {
+    background: #256628;
+    transform: translateY(-2px);
 }

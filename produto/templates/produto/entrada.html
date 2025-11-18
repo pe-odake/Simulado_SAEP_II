@@ -1,59 +1,50 @@
-{% extends 'user/home.html' %}
-
+{% extends 'user/home.html' %} 
+{% load static %} 
+{% block css_extra %}
+<link rel="stylesheet" href="{% static 'css/produtos.css' %}" />
+{% endblock %} 
 {% block content %}
-    <h1>Entradas Noder</h1>
 
-    <style>
-        table {
-            border-collapse: collapse;
-        }
+<div class="page-container">
+  <h1 class="titulo">Entradas Noder</h1>
 
-        thead {
-            background-color: black;
-            color: white;
-        }
+  <div class="top-actions">
+    <a href="{% url 'create_entradas' %}" class="btn-add">+ Adicionar Entradas</a>
+  </div>
+  <table class="tabela-produtos">
+    <thead>
+      <tr>
+        <th>ID Entrada</th>
+        <th>Código do Produto</th>
+        <th>Realizada por</th>
+        <th>Data</th>
+        <th>Quantidade</th>
+        <th>Fornecedor</th>
+        <th>Lote</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for entrada in entradas %}
+      <tr>
+        <td>{{ entrada.pk }}</td>
+        <td>{{ entrada.codigo }}</td>
+        <td>{{ entrada.user }}</td>
+        <td>{{ entrada.data }}</td>
+        <td>{{ entrada.quantidade }}</td>
+        <td>{{ entrada.fornecedor }}</td>
+        <td>{{ entrada.lote }}</td>
 
-        th,
-        td {
-            border: 1px solid black;
-            padding: 8px;
-        }
-    </style>
-
-    <table>
-        <thead>
-            <th>ID_Entrada</th>
-            <th>Codigo do Produto</th>
-            <th>Realizada por</th>
-            <th>Data</th>
-            <th>Quantidade</th>
-            <th>Fornecedor</th>
-            <th>Lote</th>
-        </thead>
-        <tbody>
-            {% for entrada in entradas %}
-            <tr>
-                <td>{{ entrada.pk }}</td>
-                <td>{{ entrada.codigo }}</td>
-                <td>{{ entrada.user }}</td>
-                <td>{{ entrada.data }}</td>
-                <td>{{ entrada.quantidade }}</td>
-                <td>{{ entrada.fornecedor }}</td>
-                <td>{{ entrada.lote }}</td>
-                <!-- <td>
-                    <a href="{% url 'edit_produto' produto.pk %}">
-                        <button type="submit">Editar</button>
-                    </a>
-                </td>
-                <td>
-                    <form method="POST" action="{% url 'delete_produto' produto.pk %}">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                    <button type="submit">Deletar</button>
-                    </form>
-                </td> -->
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+        <td class="acoes">
+          <a href="{% url 'edit_entradas' entrada.pk %}" class="btn-edit">Editar</a>
+          <form action="{% url 'delete_entradas' entrada.pk %}" method="POST" class="form-delete">
+            {% csrf_token %}
+            <button type="submit" class="btn-delete">Excluir</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 {% endblock %}

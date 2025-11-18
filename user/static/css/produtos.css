@@ -1,0 +1,129 @@
+.titulo {
+    font-size: 28px;
+    margin: 20px 0;
+    font-weight: bold;
+    color: #2e7d32;
+    text-align: center;
+}
+
+.page-container {
+    padding: 20px 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.top-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.btn-add {
+    background: #2e7d32;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.btn-add:hover {
+    background: #256628;
+    transform: translateY(-2px);
+}
+
+.tabela-produtos {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+}
+
+.tabela-produtos thead {
+    background: #1b1b1b;
+    color: #fff;
+}
+
+.tabela-produtos th {
+    padding: 14px 12px;
+    font-size: 14px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+}
+
+.tabela-produtos td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+}
+
+.tabela-produtos tbody tr:nth-child(even) {
+    background: #f7f7f7;
+}
+
+.tabela-produtos tbody tr:hover {
+    background: #efefef;
+    transition: 0.2s;
+}
+
+.acoes {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.btn-edit {
+    background: #0288d1;
+    padding: 8px 12px;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.btn-edit:hover {
+    background: #0277bd;
+    transform: translateY(-1px);
+}
+
+.btn-delete {
+    background: #d32f2f;
+    padding: 8px 12px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-delete:hover {
+    background: #b71c1c;
+    transform: translateY(-1px);
+}
+
+.img-col {
+    width: 70px;
+    text-align: center;
+}
+
+.img-col img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.img-placeholder {
+    font-size: 12px;
+    color: #777;
+    font-style: italic;
+}
